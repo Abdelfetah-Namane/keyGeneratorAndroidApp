@@ -34,6 +34,7 @@ import java.util.List;
 public class ShowKeys extends AppCompatActivity {
     private KeyListAdapter keyAdapter;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_keys);
@@ -42,10 +43,12 @@ public class ShowKeys extends AppCompatActivity {
         final ArrayList<Key> listItems = new ArrayList<Key>();
         final String json_string=getIntent().getExtras().getString("json_data");
         try {
+            //the json object that contains the list of generated keys
             JSONObject o = new JSONObject(json_string);
             JSONArray a = o.getJSONArray("keys");
 
             int count = 0;
+
             while (count < a.length()) {
                 JSONObject ob = a.getJSONObject(count);
                 Key k = new Key(ob.getString("id"), ob.getString("name"), ob.getString("key"));
@@ -55,6 +58,7 @@ public class ShowKeys extends AppCompatActivity {
                 count++;
             }
 
+            //showing the list in the app interface
             keyAdapter = new KeyListAdapter(this, R.layout.list_adapter_view, listItems);
             listView.setAdapter(keyAdapter);
 
@@ -62,7 +66,7 @@ public class ShowKeys extends AppCompatActivity {
 
         }
 
-
+        //the instructions to enable deleting a key from the list and the database
        listView.setLongClickable(true);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View v,final int position, long id) {

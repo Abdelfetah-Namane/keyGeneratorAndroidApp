@@ -136,14 +136,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //this method is used to send a request to the backen in order to generate the code
     private void openCreatedKey(String key) {
-        Intent intent = new Intent(this,CreatedKey.class);
-        intent.putExtra("textView4",key);
+        Intent intent = new Intent(this, CreatedKey.class);
+        intent.putExtra("textView4", key);
 
         startActivity(intent);
     }
 
-
+    //this method is used to get the mac adress of the android device
     public static String getMacAddr() {
         try {
             List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
@@ -171,9 +172,10 @@ public class MainActivity extends AppCompatActivity {
         return "";
     }
 
+    //this method is used to send a request to the backend in order to get the list of the generated keys
     public void openShowKeys(String json_string){
         if(json_string==null) {
-            Toast.makeText(getApplicationContext(), "first ", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "cannot see the generated keys  ", Toast.LENGTH_LONG).show();
         }else{
             Intent intent=new Intent( this,ShowKeys.class);
             intent.putExtra("json_data",json_string);
@@ -184,26 +186,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void openDeleteKeys(String json_string){
-        if(json_string==null) {
-            Toast.makeText(getApplicationContext(), "first ", Toast.LENGTH_LONG).show();
-        }else{
-            Intent intent=new Intent( this,ShowKeys.class);
-            intent.putExtra("json_data",json_string);
-            startActivity(intent);
 
-        }
-    }
 
-    public void parseJSON(View view){
-        if(json_string==null) {
-            Toast.makeText(getApplicationContext(), "first ", Toast.LENGTH_LONG).show();
-        }else{
-            Intent intent=new Intent( this,ShowKeys.class);
-            intent.putExtra("json_data",json_string);
-            startActivity(intent);
 
-        }
-    }
 }
 
